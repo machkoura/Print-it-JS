@@ -30,3 +30,13 @@ let descriPtion=document.getElementById("#text");
 let arrayPoints=points.children;
 
 let currenSlide=0;
+
+for(let i=0; i<slides.length; i++){
+	let bullet=document.createElement("div")
+	bullet.classList.add("dot");
+    if(i==0){
+        bullet.classList.add("dot_selected")
+    }
+	points.appendChild(bullet);
+
+}
