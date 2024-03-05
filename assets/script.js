@@ -1,18 +1,18 @@
 const slides = [
 	{
-		"image":"slide1.jpg",
+		"image":" ./assets/images/slideshow/slide1.jpg",
 		"tagLine":"Impressions tous formats <span>en boutique et en ligne</span>"
 	},
 	{
-		"image":"slide2.jpg",
+		"image":"./assets/images/slideshow/slide2.jpg",
 		"tagLine":"Tirages haute définition grand format <span>pour vos bureaux et events</span>"
 	},
 	{
-		"image":"slide3.jpg",
+		"image":" ./assets/images/slideshow/slide3.jpg",
 		"tagLine":"Grand choix de couleurs <span>de CMJN aux pantones</span>"
 	},
 	{
-		"image":"slide4.png",
+		"image":" ./assets/images/slideshow/slide4.png",
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
@@ -25,18 +25,61 @@ let clickRight=document.querySelector(" .arrow_right");
 
 let clickLeft=document.querySelector(".arrow_left");
 
-let descriPtion=document.getElementById("#text");
+let descriPtion=document.getElementById("text");
 
 let arrayPoints=points.children;
 
-let currenSlide=0;
+let currentSlide=0;
+
+
 
 for(let i=0; i<slides.length; i++){
-	let bullet=document.createElement("div")
-	bullet.classList.add("dot");
-    if(i==0){
-        bullet.classList.add("dot_selected")
-    }
-	points.appendChild(bullet);
 
-}
+	let bullet=document.createElement("div");
+	bullet.classList.add("dot");
+	points.appendChild(bullet);
+	arrayPoints[0].classList.add("dot_selected");
+};
+
+//addEventlistener for arrow-right
+
+clickRight.addEventListener("click",()=>{
+
+	arrayPoints[currentSlide].classList.remove("dot_selected");
+
+	currentSlide++;
+
+	if (currentSlide == slides.length) {
+
+	 currentSlide = 0;
+
+	};
+
+	image.src=slides[currentSlide].image;
+
+	arrayPoints[currentSlide].classList.add("dot_selected");
+
+    descriPtion.innerHTML=slides[currentSlide].tagLine;
+});
+
+//addEventlistener for arrow-left
+clickLeft.addEventListener("click",()=>{
+
+	arrayPoints[currentSlide].classList.remove("dot_selected");
+
+	if(currentSlide<=0){
+
+	 currentSlide=slides.length;
+
+	};
+
+	currentSlide--;
+
+ 	image.src=slides[currentSlide].image;
+
+	descriPtion.innerHTML=slides[currentSlide].tagLine;
+
+	arrayPoints[currentSlide].classList.add("dot_selected");
+
+});
+
