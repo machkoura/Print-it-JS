@@ -17,69 +17,54 @@ const slides = [
 	}
 ]
 
-let image= document.querySelector(".banner-img")
+const image = document.querySelector(".banner-img")
 
-let points= document.querySelector(".dots")
+const points = document.querySelector(".dots")
 
-let clickRight=document.querySelector(" .arrow_right");
+let clickRight = document.querySelector(".arrow_right");
 
-let clickLeft=document.querySelector(".arrow_left");
+let clickLeft = document.querySelector(".arrow_left");
 
-let descriPtion=document.getElementById("text");
+const descriPtion = document.getElementById("text");
 
-let arrayPoints=points.children;
+let arrayPoints = points.children;
 
-let currentSlide=0;
+let currentSlide = 0;
 
-
-
-for(let i=0; i<slides.length; i++){
-
+for (let i=0; i<slides.length; i++) {
 	let bullet=document.createElement("div");
 	bullet.classList.add("dot");
 	points.appendChild(bullet);
-	arrayPoints[0].classList.add("dot_selected");
+	if (i==0) {
+		bullet.classList.add("dot_selected");
+	}
 };
 
-//addEventlistener for arrow-right
 
 clickRight.addEventListener("click",()=>{
-
 	arrayPoints[currentSlide].classList.remove("dot_selected");
-
 	currentSlide++;
 
 	if (currentSlide == slides.length) {
-
-	 currentSlide = 0;
-
-	};
+		currentSlide = 0;
+	}
 
 	image.src=slides[currentSlide].image;
-
 	arrayPoints[currentSlide].classList.add("dot_selected");
-
     descriPtion.innerHTML=slides[currentSlide].tagLine;
 });
 
-//addEventlistener for arrow-left
-clickLeft.addEventListener("click",()=>{
 
+clickLeft.addEventListener("click",()=>{
 	arrayPoints[currentSlide].classList.remove("dot_selected");
 
 	if(currentSlide<=0){
-
-	 currentSlide=slides.length;
-
-	};
+		currentSlide=slides.length;
+	}
 
 	currentSlide--;
-
  	image.src=slides[currentSlide].image;
-
 	descriPtion.innerHTML=slides[currentSlide].tagLine;
-
 	arrayPoints[currentSlide].classList.add("dot_selected");
-
 });
 
